@@ -4,19 +4,41 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'todo-details/:id',
+    loadChildren: () => import('./pages/todo-details/todo-details.module').then(m => m.TodoDetailsPageModule)
+  },
+  {
+    path: 'todo-details',
+    loadChildren: () => import('./pages/todo-details/todo-details.module').then(m => m.TodoDetailsPageModule)
+  },
+  {
+    path: 'tutorials/list',
+    loadChildren: () => import('./pages/tutorials/list/list.module').then( m => m.ListPageModule)
+  },
+  {
+    path: 'tutorials/list/add',
+    loadChildren: () => import('./pages/tutorials/list/list.module').then( m => m.ListPageModule)
+  },
+  // {
+  //   path: 'add',
+  //   loadChildren: () => import('./pages/tutorials/add/add.module').then( m => m.AddPageModule)
+  // },
+
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
+
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

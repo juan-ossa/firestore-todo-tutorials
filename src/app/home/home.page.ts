@@ -16,6 +16,7 @@ export class HomePage implements OnInit {
   nums: number[] = [1, 2, 3, 3, 1, 1, 1];
   todos: Task[];
   lstTareas = [];
+  someString = '';
   // item$: Observable<import('@angular/fire/firestore').DocumentData[]>;
   // item$: Observable<Item[]>;
 
@@ -39,8 +40,20 @@ export class HomePage implements OnInit {
     this.allTareas();
   }
 
+  filtrar() {
+    console.log('Numw...',this.someString);
+    this.todoService.getTareaxPrioridad(this.someString).then(
+      res => {
+        res.forEach((doc) => {
+
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, ' => ', doc.data());
+        });
+      });
+
+  }
   allTareas() {
-    this.todoService.getTareaxPrioridad(1).then(
+    this.todoService.getTareaxPrioridad('1').then(
       res => {
         res.forEach((doc) => {
 

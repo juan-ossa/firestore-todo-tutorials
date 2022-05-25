@@ -50,10 +50,12 @@ export class TodoService {
   }
 
 
-  getTareaxPrioridad(np: number) {
+  getTareaxPrioridad(np: string) {
     // let user = firebase.auth().currentUser;
     // return this.db.collection('todos').ref.where('priority', '==', 2).get();
-    return this.todosRef.ref.where('priority', '==', np).get();
+    console.log('filtrando');
+    const npNum =Number(np);
+    return this.todosRef.ref.where('priority', '==', npNum).get();
 
   }
 
